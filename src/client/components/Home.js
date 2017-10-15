@@ -1,3 +1,5 @@
-import React from "react";
+import React from "react"
 
-export default () => <div>Home component</div>;
+export default () => (
+  <button onClick={() => console.log("Clicked!")}>Click me</button>
+)
