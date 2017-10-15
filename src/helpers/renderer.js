@@ -6,7 +6,7 @@ import { Provider } from "react-redux"
 
 module.exports = ({ path }, store) => {
   const content = renderToString(
-    <Provider>
+    <Provider store={store}>
       <StaticRouter location={path} context={{}}>
         <Routes />
       </StaticRouter>
