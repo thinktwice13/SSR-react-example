@@ -1,2 +1,2 @@
-# SSR-react-sample
-A sample of server-side-rendering app using Express, React and Redux
+# SSR React example
+A server-side-rendering example using Express, React and Redux
