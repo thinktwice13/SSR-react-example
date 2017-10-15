@@ -80,19 +80,9 @@ var _express = __webpack_require__(2);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _server = __webpack_require__(3);
-
-var _Home = __webpack_require__(4);
-
-var _Home2 = _interopRequireDefault(_Home);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// const express = require("express")
+var renderer = __webpack_require__(6); // const express = require("express")
 // const React = require("react")
 // const renderToString = require("react-dom/server").renderToString
 // const Home = require("./client/components/Home").default
@@ -102,9 +92,7 @@ var app = (0, _express2.default)();
 app.use(_express2.default.static("public"));
 
 app.get("/", function (req, res) {
-  var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
-  var html = "\n    <html>\n      <body>\n        <div id=\"root\">" + content + "</div>\n        <script src=\"bundle.js\"></script>\n      </body>\n    </html>\n  ";
-  res.send(html);
+  res.send(renderer());
 });
 
 app.listen(3003, function () {
@@ -148,6 +136,31 @@ exports.default = function () {
       } },
     "Click me"
   );
+};
+
+/***/ }),
+/* 5 */,
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _server = __webpack_require__(3);
+
+var _Home = __webpack_require__(4);
+
+var _Home2 = _interopRequireDefault(_Home);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = function (app) {
+  var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
+  return "\n    <html>\n      <body>\n        <div id=\"root\">" + content + "</div>\n        <script src=\"bundle.js\"></script>\n      </body>\n    </html>\n  ";
 };
 
 /***/ })
