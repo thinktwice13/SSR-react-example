@@ -1,9 +1,14 @@
 import React from "react"
 import { renderToString } from "react-dom/server"
-import Home from "../client/components/Home"
+import { StaticRouter } from "react-router-dom"
+import Routes from "../client/Routes"
 
-module.exports = app => {
-  const content = renderToString(<Home />)
+module.exports = ({ path }) => {
+  const content = renderToString(
+    <StaticRouter location={path} context={{}}>
+      <Routes />
+    </StaticRouter>
+  )
   return `
     <html>
       <body>
