@@ -18,11 +18,11 @@ app.get("*", (req, res) => {
   const store = createStore()
 
   // Load component data before rendering on client
-  matchRoutes(Routes, req.path).map(
-    ({ route }) => route.loadData && route.loadData()
+  const promises = matchRoutes(Routes, req.path).map(
+    ({ route }) => route.loadData && route.loadData(store)
   )
 
-  res.send(renderer(req, store))
+  Promise.all(promises).then(() => res.send(renderer(req, store)))
 })
 
 app.listen(3003, () => console.log("Server started."))
