@@ -3,12 +3,13 @@ import { renderToString } from "react-dom/server"
 import { StaticRouter } from "react-router-dom"
 import Routes from "../client/Routes"
 import { Provider } from "react-redux"
+import { renderRoutes } from "react-router-config"
 
 module.exports = ({ path }, store) => {
   const content = renderToString(
     <Provider store={store}>
       <StaticRouter location={path} context={{}}>
-        <Routes />
+        <div>{renderRoutes(Routes)}</div>
       </StaticRouter>
     </Provider>
   )
