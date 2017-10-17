@@ -15,9 +15,9 @@ const app = express()
 
 app.use(
   "/api",
-  proxy("http://react-ssr-api.herokuapi.com", {
+  proxy("http://react-ssr-api.herokuapp.com", {
     proxyReqOptDecorator(opts) {
-      opts.header["x-forward-host"] = "localhost:3003"
+      opts.headers["x-forwarded-host"] = "localhost:3003"
       return opts
     }
   })
@@ -25,7 +25,7 @@ app.use(
 app.use(express.static("public"))
 
 app.get("*", (req, res) => {
-  const store = createStore()
+  const store = createStore(req)
 
   // Load component data before rendering on client
   const promises = matchRoutes(Routes, req.path).map(
