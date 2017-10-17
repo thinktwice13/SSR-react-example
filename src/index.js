@@ -9,9 +9,19 @@ import renderer from "./helpers/renderer"
 import createStore from "./helpers/createStore"
 import { matchRoutes } from "react-router-config"
 import Routes from "./client/Routes"
+import proxy from "express-http-proxy"
 
 const app = express()
 
+app.use(
+  "/api",
+  proxy("http://react-ssr-api.herokuapi.com", {
+    proxyReqOptDecorator(opts) {
+      opts.header["x-forward-host"] = "localhost:3003"
+      return opts
+    }
+  })
+)
 app.use(express.static("public"))
 
 app.get("*", (req, res) => {
