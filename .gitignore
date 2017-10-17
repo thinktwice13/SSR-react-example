@@ -60,3 +60,6 @@ typings/
 # build directory
 /build/
 /public/
+
+# WebStorm
+.idea/

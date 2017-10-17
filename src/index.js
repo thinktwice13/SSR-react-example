@@ -28,8 +28,16 @@ app.get("*", (req, res) => {
   const store = createStore(req)
 
   // Load component data before rendering on client
+
   const promises = matchRoutes(Routes, req.path).map(
-    ({ route }) => route.loadData && route.loadData(store)
+    ({ route }) =>
+      route.loadData &&
+      new Promise((resolve, reject) =>
+        route
+          .loadData(store)
+          .then(resolve)
+          .catch(resolve)
+      )
   )
 
   Promise.all(promises).then(() => {
