@@ -4,7 +4,7 @@ import authReducer from "./authReducer"
 import adminsReducer from "./adminsReducer"
 
 export default combineReducers({
-  users: usersReducer,
   auth: authReducer,
+  users: usersReducer,
   admins: adminsReducer
 })
