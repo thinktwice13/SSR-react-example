@@ -32,7 +32,14 @@ app.get("*", (req, res) => {
     ({ route }) => route.loadData && route.loadData(store)
   )
 
-  Promise.all(promises).then(() => res.send(renderer(req, store)))
+  Promise.all(promises).then(() => {
+    const context = {}
+    const content = renderer(req, store, context)
+    if (context.notFound) {
+      res.status(404)
+    }
+    res.send(content)
+  })
 })
 
 app.listen(3000, () => console.log("Server started."))
