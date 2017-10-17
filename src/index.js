@@ -17,7 +17,7 @@ app.use(
   "/api",
   proxy("http://react-ssr-api.herokuapp.com", {
     proxyReqOptDecorator(opts) {
-      opts.headers["x-forwarded-host"] = "localhost:3003"
+      opts.headers["x-forwarded-host"] = "localhost:3000"
       return opts
     }
   })
@@ -35,4 +35,4 @@ app.get("*", (req, res) => {
   Promise.all(promises).then(() => res.send(renderer(req, store)))
 })
 
-app.listen(3003, () => console.log("Server started."))
+app.listen(3000, () => console.log("Server started."))

@@ -1,9 +1,9 @@
 import { FETCH_CURRENT_USER } from "../actions"
 
-export default (state = null, actions) => {
-  switch (actions.payload) {
+export default (state = null, action) => {
+  switch (action.type) {
     case FETCH_CURRENT_USER:
-      return actions.payload || false
+      return action.payload || false
     default:
       return state
   }
